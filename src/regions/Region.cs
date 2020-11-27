@@ -85,7 +85,7 @@ namespace DataFileReader
 
 			if ( GlobalValue )
 			{
-                globalValues[Name] = ToString();
+				globalValues[Name] = ToString();
 			}
 		}
 
