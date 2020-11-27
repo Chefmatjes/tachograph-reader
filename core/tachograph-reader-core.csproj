@@ -12,6 +12,10 @@
     <Content Remove="DriverCardData.config" />
     <Content Remove="VehicleUnitData.config" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Formats.Asn1" Version="5.0.0" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\src\tachograph-reader-lib.csproj" />
   </ItemGroup>

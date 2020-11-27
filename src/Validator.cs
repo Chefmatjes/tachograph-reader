@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Numerics;
 using System.Reflection;
 using System.Linq;
-using System.Security.Cryptography.Asn1;
+using System.Formats.Asn1;
 
 namespace DataFileReader
 {
@@ -114,7 +114,7 @@ namespace DataFileReader
 
 		public struct DigestAlgorithmIdentifier
 		{
-			public Oid algorithm;
+			public string algorithm;
 			public byte[] parameters;
 
 			public DigestAlgorithmIdentifier(AsnReader asnReader)
@@ -150,7 +150,7 @@ namespace DataFileReader
 
 			public bool VerifyData(byte[] data)
 			{
-				if (this.digestAlgorithm.algorithm.FriendlyName == "sha1")
+				if (this.digestAlgorithm.algorithm == "sha1")
 				{
 					using (SHA1CryptoServiceProvider sha1 = new SHA1CryptoServiceProvider())
 					{
@@ -161,8 +161,7 @@ namespace DataFileReader
 					};
 				} else
 				{
-					throw new InvalidSignatureException(string.Format("Unknown DigestAlgorithm {0} ({1})!", this.digestAlgorithm.algorithm.FriendlyName,
-					                                                                                        this.digestAlgorithm.algorithm.Value));
+					throw new InvalidSignatureException(string.Format("Unknown DigestAlgorithm {0}!", this.digestAlgorithm.algorithm));
 				};
 
 				return false;
